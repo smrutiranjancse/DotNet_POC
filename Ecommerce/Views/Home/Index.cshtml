@@ -1,0 +1,50 @@
+﻿@model Ecommerce.Models.ViewModels.HomeVM
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="btn-group-vertical" style="width: 100%">
+                <button class="btn btn-dark btn-block filter-button" data-filter="all">All</button><br />
+                @foreach (var obj in Model.Categories)
+                {
+                    <button class="btn btn-outline-secondary filter-button" data-filter="@obj.Name.Replace(' ','_')">
+                        @obj.Name
+                    </button>
+                    <br />
+                }
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="row">
+                @foreach (var prod in Model.Products)
+                {
+                    <partial name="_IndividualProductCard" model="prod" />
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts
+{    
+    <script>
+        $(document).ready(function ()
+        {
+            $(".filter-button").click(function ()
+            {
+                var value = $(this).attr('data-filter');
+                if (value == "all")
+                {
+                    $('.filter').show('1000');
+                }
+                else
+                {
+                $(".filter").not('.'+value).hide('3000');
+                $('.filter').filter('.'+value).show('3000');
+                }
+            });
+        });
+    </script>
+}

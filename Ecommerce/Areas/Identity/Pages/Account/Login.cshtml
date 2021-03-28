@@ -1,0 +1,33 @@
+﻿@page
+@model LoginModel
+<div class="row">
+
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+
+        <h1 class="h3 mb-3 font-weight-normal text-info pt-4" style="text-align:center;">Sign In</h1>
+        <form id="account" method="post">
+            <input asp-for="Input.Email" placeholder="Email..." type="email" class="mb-1 form-control" />
+            <input asp-for="Input.Password" placeholder="Password..." type="password" class="form-control" />
+            <br />
+            <button type="submit" class="btn btn-success btn-block">Log in</button>
+            <a id="forgot-password" asp-page="./ForgotPassword" class="text-info text-center">Forgot your password?</a>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-info btn-block text-white text-center">Register as a new user</a>
+            <hr />
+            <p style="opacity : 0.5;">
+                Dummy Admin Email: smrutiadmin@admin.com<br />
+                Dummy User Email: smrutiuser@user.com<br />
+                Password: Temp1234*
+            </p>
+        </form>
+    </div>
+
+    <div class="col-md-4"></div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
